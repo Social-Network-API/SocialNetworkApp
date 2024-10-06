@@ -27,7 +27,6 @@ const WritePost = () => {
 
   return (
     <div className="write-post-container">
-      
       <UserInputArea
         value={postContent}
         onChange={handlePostChange}
