@@ -30,7 +30,7 @@ const WritePost = () => {
       
       <UserInputArea
         value={postContent}
-        handleOnChange={handlePostChange}
+        onChange={handlePostChange}
         placeholder="Write a post..."
       />
       {selectedImage && (
