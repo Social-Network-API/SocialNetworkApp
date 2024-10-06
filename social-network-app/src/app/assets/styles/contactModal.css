@@ -1,0 +1,40 @@
+.contact-modal-container {
+    position: fixed;
+    right: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .contact-title {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .contact-profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .contact-user-info h4 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
