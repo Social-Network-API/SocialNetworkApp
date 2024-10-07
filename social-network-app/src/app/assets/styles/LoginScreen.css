@@ -1,0 +1,96 @@
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.branding {
+    text-align: center;
+    flex: 0 1 30%;
+    margin-right: 1px;
+    margin-left: 150px;
+
+}
+
+.branding .logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.branding p {
+    font-size: 25px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login-container {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-left: 1px;
+    margin-right: 150px;
+}
+
+.login-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+}
+
+.create-account-btn {
+    background-color: #42b72a;
+    color: white;
+    border: none;
+    margin-top: 20px;
+
+}
+
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .branding {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .login-container {
+        margin-top: 5px;
+        max-width: 100%;
+    }
+}
+
