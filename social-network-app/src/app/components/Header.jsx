@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   const handleLogoClick = () => {
-    navigate("/");
+    navigate("/Home");
   };
 
   const closeModal = () => {
