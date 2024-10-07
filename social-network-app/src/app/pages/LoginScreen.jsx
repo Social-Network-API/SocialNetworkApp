@@ -22,9 +22,9 @@ const LoginScreen = () => {
                 password
             });
 
-            const token = response.data.token;
-            localStorage.setItem('token', token); 
-
+            const { token, userId } = response.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId);
             navigate('/Home');
         } catch (error) {
             console.error('Error logging in:', error.response.data.message);

@@ -1,60 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "../components/Header";
 import MenuOption from "../components/Modal/MenuOption";
 import WritePost from "../components/WritePost";
 import Post from "../components/Post";
-import profilePic from "../assets/images/postImage.png";
-import profileDefault from "../assets/images/perfil.jpg";
 import ContactModal from "../components/Modal/ContactModal";
 import "../assets/styles/home.css";
 
 const Home = () => {
-  const user = {
-    profilePic: profilePic,
-    name: "John Doe",
-    timestamp: "2 hours ago",
-  };
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const comments = [
-    {
-      userProfilePic: profileDefault,
-      userName: "Alice",
-      text: "Great post!",
-    },
-    {
-      userProfilePic: profileDefault,
-      userName: "Bob",
-      text: "Thanks for sharing!",
-    },
-  ];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(`http://localhost:5270/api/v1/posts/home?userId=${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setPosts(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <p>Loading posts...</p>;
+  }
 
   return (
-    <div className="home-container">
-      <Header />
-      <div className="home-content">
-        <div className="left-sidebar">
-          <MenuOption />
-        </div>
+      <div className="home-container">
+        <Header />
+        <div className="home-content">
+          <div className="left-sidebar">
+            <MenuOption />
+          </div>
 
-        <div className="main-content">
-          <WritePost />
-          <Post
-            user={user}
-            content="This is a sample post content."
-            image={profilePic}
-            likes={12}
-            comments={comments}
-          />
-        </div>
+          <div className="main-content">
+            <WritePost />
+            {posts.map((post) => (
+                <Post
+                    user={post.user}
+                    content={post.content}
+                    image={post.image}
+                    likes={post.likes.total}
+                    comments={post.comments.list}
+                />
+            ))}
+          </div>
 
-        <div className="right-sidebar">
-          <ContactModal
-            userName="John Doe"
-            userProfilePic={profileDefault}
-          />
+          <div className="right-sidebar">
+            <ContactModal userName="John Doe" userProfilePic="../assets/images/perfil.jpg" />
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
