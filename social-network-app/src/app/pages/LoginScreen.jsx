@@ -1,0 +1,66 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FieldText from "../components/FieldText";
+import PasswordField from "../components/PasswordField";
+import Button from '../components/Button';
+import image from "../assets/images/logo.png";
+import "../assets/styles/LoginScreen.css";
+import { Box } from "@mui/system";
+
+const LoginScreen = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate('/Home');
+    };
+
+    const handleSignupRedirect = () => {
+        navigate('/Signup'); 
+    };
+
+    return (
+        <div className="login-screen">
+            <div className="login-wrapper">
+                <div className="branding">
+                    <img src={image} alt="Logo" className="logo" />
+                    <p>Connect with friends and the world around you on Mingle.</p>
+                </div>
+
+                <div className="login-container">
+                    <div className="login-form">
+                        <form onSubmit={handleLogin}>
+                            <Box className="field-container">
+                                <FieldText
+                                    variant="outlined"
+                                    value={email}
+                                    setValue={setEmail}
+                                    name="email"
+                                    label="Email"
+                                    placeholder="name@example.com"
+                                    required={true}
+                                />
+                            </Box>
+                            <Box className="field-container">
+                                <PasswordField
+                                    variant="outlined"
+                                    value={password}
+                                    setValue={setPassword}
+                                    name="password"
+                                    label="Password"
+                                    placeholder=""
+                                    required={true}
+                                />
+                            </Box>
+                        </form>
+                        <Button onClick={handleLogin} type="submit" label="Login" color="primary" className="btn login-btn" />
+                        <Button onClick={handleSignupRedirect} label="Create new account" color="success" className="btn create-account-btn" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default LoginScreen;
