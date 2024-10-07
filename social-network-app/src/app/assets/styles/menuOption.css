@@ -1,0 +1,82 @@
+.menu-option-container {
+  position: fixed;
+  top: 100px; /* Puedes ajustar según la altura del header */
+  left: 20px;
+  width: 200px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.menu-option-container:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.menu-section h3 {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.menu-options-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-options-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-options-list li:hover {
+  background-color: #dbdbdb;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.iconFriends {
+  color: #007bff;
+}
+
+.iconLiked {
+  color: #cc0404;
+}
+
+.iconPosts {
+  color: #3f5000;
+}
+
+.menu-options-list span {
+  font-size: 14px;
+  color: #333;
+}

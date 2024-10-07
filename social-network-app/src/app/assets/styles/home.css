@@ -1,0 +1,26 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home-content {
+  display: grid;
+  grid-template-columns: 0.2fr 1.6fr 0.2fr;
+  grid-gap: 20px;
+  padding: 100px 20px 20px;
+  flex: 1;
+}
+
+.left-sidebar,
+.right-sidebar {
+  position: sticky;
+  top: 100px;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
