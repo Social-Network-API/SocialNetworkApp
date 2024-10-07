@@ -22,9 +22,5 @@
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
-.main-content > * {
-  margin-bottom: 20px;
-}

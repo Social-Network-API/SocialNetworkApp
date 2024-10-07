@@ -27,10 +27,9 @@ const WritePost = () => {
 
   return (
     <div className="write-post-container">
-      
       <UserInputArea
         value={postContent}
-        handleOnChange={handlePostChange}
+        onChange={handlePostChange}
         placeholder="Write a post..."
       />
       {selectedImage && (
