@@ -6,15 +6,31 @@ import Button from '../components/Button';
 import image from "../assets/images/logo.png";
 import "../assets/styles/LoginScreen.css";
 import { Box } from "@mui/system";
+import axios from 'axios';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        navigate('/Home');
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:5270/api/v1/auth/login', {
+                email,
+                password
+            });
+
+            const token = response.data.token;
+            localStorage.setItem('token', token); 
+
+            navigate('/Home');
+        } catch (error) {
+            console.error('Error logging in:', error.response.data.message);
+        }
     };
+
 
     const handleSignupRedirect = () => {
         navigate('/Signup'); 

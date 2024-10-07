@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import "../assets/styles/SignupForm.css";
 import { Box } from "@mui/system";
 import image from "../assets/images/logo.png";
+import axios from 'axios';
 
 const SignupForm = () => {
     const [name, setName] = useState("");
@@ -13,8 +14,21 @@ const SignupForm = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        navigate('/Home'); 
+    const handleSubmit  = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:5270/api/v1/auth/register', {
+                name,
+                email,
+                password,
+            });
+            localStorage.setItem('token', response.data.token);
+
+            navigate('/');  
+        } catch (error) {
+            console.error('Error registering:', error.response.data.message);
+        }
     };
 
     return (
