@@ -1,6 +1,6 @@
 .menu-option-container {
   position: fixed;
-  top: 100px; /* Puedes ajustar según la altura del header */
+  top: 100px; 
   left: 20px;
   width: 200px;
   padding: 20px;
@@ -53,6 +53,13 @@
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s ease;
+}
+
+.menu-options-list li.active {
+  background-color: #d1e7ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; 
+  
 }
 
 .menu-options-list li:hover {
