@@ -1,22 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
 import FieldText from "../components/FieldText";
-import PasswordField from "../components/PasswordField";
 import BigPrimaryButton from "../components/BigPrimaryButton";
 import profileDefault from "../assets/images/perfil.jpg";
 import { FaRegEdit } from "react-icons/fa";
 import Header from "../components/Header";
+import axios from "axios"; // Asegúrate de importar axios
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/editProfile.css";
 
 const EditProfile = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(profileDefault);
+  const userId = localStorage.getItem("userId"); // Obtén el ID del usuario
+  const navigator = useNavigate();
 
-  const handleSave = () => {
-    console.log("Profile updated:", { name, email, password, newPassword });
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5270/api/v1/users/${userId}`);
+        setName(response.data.name);
+        setProfilePhoto(response.data.profilePicture || profileDefault);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
+  const handleSave = async () => {
+    const updatedData = {
+      name,
+      profilePicture: profilePhoto,
+    };
+
+    try {
+      await axios.put(`http://localhost:5270/api/v1/users/${userId}`, updatedData);
+      
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+    navigator("/Home"); 
   };
 
   const handleProfilePhotoChange = (event) => {
@@ -65,46 +90,13 @@ const EditProfile = () => {
               value={name}
               setValue={setName}
               name="name"
-              label="Nombre"
-              placeholder="Ingresa tu nombre"
-              required={true}
-            />
-          </Box>
-          <Box className="field-container">
-            <FieldText
-              variant="outlined"
-              value={email}
-              setValue={setEmail}
-              name="email"
-              label="Email"
-              placeholder="nombre@ejemplo.com"
-              required={true}
-            />
-          </Box>
-          <Box className="field-container">
-            <PasswordField
-              variant="outlined"
-              value={password}
-              setValue={setPassword}
-              name="password"
-              label="Contraseña"
-              placeholder=""
-              required={true}
-            />
-          </Box>
-          <Box className="field-container">
-            <PasswordField
-              variant="outlined"
-              value={newPassword}
-              setValue={setNewPassword}
-              name="newPassword"
-              label="Nueva Contraseña"
-              placeholder=""
+              label="Name"
+              placeholder="Enter your name"
               required={true}
             />
           </Box>
           <div className="button-container">
-            <BigPrimaryButton onClick={handleSave} children="Guardar Cambios" />
+            <BigPrimaryButton onClick={handleSave} children="Save Changes" />
           </div>
         </div>
       </div>
